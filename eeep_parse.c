@@ -19,7 +19,7 @@
 #endif // !ARRAYSIZE
 
 #ifndef FIELD_OFFSET
-#define FIELD_OFFSET(type,field)    (((long)(void *)&(((type *)0)->field)))
+#define FIELD_OFFSET(type,field)    (((size_t)(void *)&(((type *)0)->field)))
 #endif
 
 void PrintUdid(EeePUDId_t *udid)
@@ -844,6 +844,7 @@ int main(int argc, char **argv)
         ParseComHpcModule(mp);
     } else {
         fprintf(stderr, "%s: Unknown GenID in the header: \"%c%c%c%c\" (%02X %02X %02X %02X)\n",
+            argv[0],
             exp_eep->GenId[0], exp_eep->GenId[1], exp_eep->GenId[2], exp_eep->GenId[3],
             exp_eep->GenId[0], exp_eep->GenId[1], exp_eep->GenId[2], exp_eep->GenId[3]);
     }
