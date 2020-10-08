@@ -386,7 +386,8 @@ typedef struct UsbPortBlock_s{
                                      Bit 2:   USB C connector supported
                                      Bit 3:   USB C lane muxing supported
                                      Bit 4:   Port 80 support on USB_PD
-                                     Bit 5-7: Reserved */
+                                     Bit 5:   USB Client mode supported (Only for USB0)
+                                     Bit 6-7: Reserved */
 } USBPortBlock_t;
 
 #define COMHR10_BLOCK_ID_DISPLAY_PORT EEEP_UINT8_C(0xE5)
@@ -423,4 +424,5 @@ typedef struct DisplayBlock_s{
 } DisplayBlock_t;
 
 #endif /* __COMHEEP_H__ */
+
 

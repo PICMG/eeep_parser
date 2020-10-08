@@ -648,14 +648,14 @@ void ParseUsbPortBlock(USBPortBlock_t *dblock)
     const char *generations[] =
         { "USB 2.0", "USB 3.2 Gen 1", "USB 3.2 Gen 2", "USB 3.2 Gen 2x2", "USB 4.0 Gen 2x2", "USB 4.0 Gen 3x2" };
     const char *flags[] =
-        { "DisplayPort", "PCIe", "USB-C-Connector", "USB-C-LaneMuxing", "Port80" };
+        { "DisplayPort", "PCIe", "USB-C-Connector", "USB-C-LaneMuxing", "Port80", "ClientMode" };
 	printf("   COM-HPC USB Port block:\n");
 	printf("      Port %d: Generation: %s\n", dblock->PortNr, generations[dblock->UsbGeneration & 7] );
     if((dblock->UsbGeneration >> 4) & 7) {
         printf("      Paired with port %d\n", (dblock->UsbGeneration >> 4) & 7);
     }
     printf("      Supported features: ");
-    for(int i = 0; i < 5; i++) {
+    for(int i = 0; i < 6; i++) {
         if(dblock->Flags & (1 << i)) {
             printf("%s ", flags[i]);
         }
