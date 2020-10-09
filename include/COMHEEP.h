@@ -356,7 +356,7 @@ typedef struct PciELane_s{
 typedef struct PciEBifurcationBlock_s {
     DBlockIdHdr_t DBHdr;          /* Dynamic Block Header */
     uint8_t NrOfLaneDescriptors;  /* 0x03 Number of lane descriptors to follow */
-    PciELane_t LaneDescriptors[0];/* 0x04 Lanes */
+    PciELane_t LaneDescriptors[1];/* 0x04 Lanes */
 } PciEBifurcationBlock_t;
 
 #define COMHR10_BLOCK_ID_USB_PORT EEEP_UINT8_C(0xE4)
