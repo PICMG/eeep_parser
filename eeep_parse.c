@@ -609,6 +609,7 @@ void ParseNetworkBlock(NetworkPortBlock_t *dblock)
             printf("%s ", options[i]);
         }
     }
+    printf("\n");
     printf("      MAC Address: %02X-%02X-%02X-%02X-%02X-%02X\n",
         dblock->MfgMacAddress[0], dblock->MfgMacAddress[1],
         dblock->MfgMacAddress[2], dblock->MfgMacAddress[3],
@@ -637,7 +638,7 @@ void ParsePciEBifurcationBlock(PciEBifurcationBlock_t *dblock)
                 laneDescr->Configurations[idx2] & 0x80 ? "(R)" : ""); 
         }
         printf("\n");
-        laneDescr = (PciELane_t *)((const char *)laneDescr + sizeof(PciELane_t) + count2);
+        laneDescr = (PciELane_t *)((const char *)laneDescr + FIELD_OFFSET(PciELane_t, Configurations) + count2);
     }
 }
 
@@ -775,7 +776,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "Usage: %s infile\n", argv[0]);
         return -1;
     }
-    if ((ifp = fopen(argv[1], "r")) == NULL) {
+    if ((ifp = fopen(argv[1], "rb")) == NULL) {
         fprintf(stderr, "%s: cannot open %s\n", argv[0], argv[1]);
         return -1;
     }
