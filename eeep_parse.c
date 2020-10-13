@@ -198,12 +198,14 @@ void ParseComHpcCarrier(COMHR10_CB_t *cbp)
 			printf("%s ", misc_io1_str[i]);
 		}
 	}
+	printf("\n");
 	printf("   Misc IO2: ");
 	for(int i = 0; i < 4; i++) {
 		if(cbp->MiscIo2 & (1 << i)) {
 			printf("%s ", misc_io2_str[i]);
 		}
 	}
+	printf("\n");
 	printf("   PCI Express Lane Gen:");
 	count = 0;
 	for(int i = 0; i < 64; i++) {
