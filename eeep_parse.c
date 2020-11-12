@@ -592,12 +592,14 @@ void ParseSerialPort(SerPortCfgBlock_t *dblock)
 
 void ParseNetworkBlock(NetworkPortBlock_t *dblock)
 {
+    const char *port_types[] = { "NBASE-T", "KR/KX" };
     const char *speeds[] =
         { "10MB", "100MB", "1GB", "2.5GB", "5GB", "10GB", "25GB", "40GB" };
     const char *options[] =
         { "FullDuplex", "AutoNeg", "SyncE", "Backplane", "PHY" };
 	printf("   COM-HPC Network Port block:\n");
-	printf("      Port %d\n", dblock->PortNr);
+	printf("      Port %d: %s\n", dblock->PortNr & 0xF, 
+            (dblock->PortNr >> 4) < ARRAYSIZE(port_types) ? port_types[dblock->PortNr >> 4] : "?");
     printf("      Supported speeds: ");
     for(int i = 0; i < 8; i++) {
         if(dblock->SupportedSpeeds & (1 << i)) {
@@ -672,10 +674,12 @@ void ParseDisplayBlock(DisplayBlock_t *dblock)
 {
     const char *interfaces[] =
         { "DisplayPort", "HDMI/DVI", "DSI", "eDP" };
+    const char *port_types[] = { "DDI", "eDP/DSI" };
     const char *suffixes[] =
         { "", ".a", ".b", ".c" };
 	printf("   COM-HPC Display Port block:\n");
-	printf("      Port %d: Supported interfaces: ", dblock->PortNr);
+	printf("      Port %d: %s; Supported interfaces: ", dblock->PortNr & 0xF, 
+        (dblock->PortNr >> 4) < ARRAYSIZE(port_types) ? port_types[dblock->PortNr >> 4] : "?");
     for(int i = 0; i < 4; i++) {
         if(dblock->Interfaces & (1 << i)) {
             printf("%s ", interfaces[i]);
