@@ -311,7 +311,11 @@ typedef struct COMHR10_CB_s{
 */
 typedef struct NetworkPortBlock_s{
     DBlockIdHdr_t DBHdr;          /* 0x00 Dynamic Block Header */
-    uint8_t PortNr;               /* 0x03 Number of the network port this block describes */
+    uint8_t PortNr;               /* 0x03 Number and category of the network port this block describes
+                                     Bit 0-3: Port number, starting at 0
+                                     Bit 4-7: Category
+                                              0 = NBASE-T
+                                              1 = KR/KX */
     uint8_t SupportedSpeeds;      /* 0x04 Supported speeds
                                      Bit 0:   10 MBit
                                      Bit 1:   100 MBit
@@ -399,7 +403,11 @@ typedef struct UsbPortBlock_s{
 
 typedef struct DisplayBlock_s{
     DBlockIdHdr_t DBHdr;          /* 0x00 Dynamic Block Header */
-    uint8_t PortNr;               /* 0x03 Number of the port this block describes */
+    uint8_t PortNr;               /* 0x03 Number and category of the display port this block describes
+                                     Bit 0-3: Port number, starting at 0
+                                     Bit 4-7: Category
+                                              0 = DDI
+                                              1 = eDP/DSI */
     uint8_t Interfaces;           /* 0x04 Supported interfaces
                                      Bit 0:   DisplayPort supported
                                      Bit 1:   HDMI/DVI supported
