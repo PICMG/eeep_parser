@@ -371,7 +371,7 @@ struct {
     { SMBIOS_ChassisType_Lunch_Box, "Lunch Box" },
     { SMBIOS_ChassisType_Main_Server_Chassis, "Main Server Chassis" },
     { SMBIOS_ChassisType_Expansion_Chassis, "Expansion Chassis" },
-    { SMBIOS_ChassisType_SubChassis, "Sub Chassis" },
+    { SMBIOS_ChassisType_Sub_Chassis, "Sub Chassis" },
     { SMBIOS_ChassisType_Bus_Expansion_Chassis, "Bus Expansion Chassis" },
     { SMBIOS_ChassisType_Peripheral_Chassis, "Peripheral Chassis" },
     { SMBIOS_ChassisType_RAID_Chassis, "RAID Chassis" },

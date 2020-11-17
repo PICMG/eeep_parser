@@ -452,7 +452,7 @@ enum ChassisTypes_e {
     SMBIOS_ChassisType_Lunch_Box = 0x10,
     SMBIOS_ChassisType_Main_Server_Chassis =0x11,
     SMBIOS_ChassisType_Expansion_Chassis =0x12,
-    SMBIOS_ChassisType_SubChassis =0x13,
+    SMBIOS_ChassisType_Sub_Chassis =0x13,
     SMBIOS_ChassisType_Bus_Expansion_Chassis =0x14,
     SMBIOS_ChassisType_Peripheral_Chassis =0x15,
     SMBIOS_ChassisType_RAID_Chassis =0x16,
