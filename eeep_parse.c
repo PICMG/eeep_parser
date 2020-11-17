@@ -212,13 +212,11 @@ void ParseComHpcCarrier(COMHR10_CB_t *cbp)
 		uint8_t gen = cbp->PCIeGen[i >> 2];
 		gen >>= (i & 3) << 1;
 		gen &= 3;
-		if(gen != 3) {
-			if(count % 16 == 0) {
-				printf("\n      ");
-			}
-			printf("%d:%s ", i, pcie_gens[gen]);
-			count ++;
-		}
+        if(count % 8 == 0) {
+            printf("\n      ");
+        }
+        printf("%d:%s ", i, pcie_gens[gen]);
+        count ++;
 	}
 	printf("\n");
 	printf("   PCI Express Lane Map:");
@@ -229,7 +227,7 @@ void ParseComHpcCarrier(COMHR10_CB_t *cbp)
 			map >>= 4;
 		map &= 7;
 		if(map != 0) {
-			if(count % 16 == 0) {
+			if(count % 8 == 0) {
 				printf("\n      ");
 			}
 			printf("%d:x%d ", i, 1 << (map-1));
