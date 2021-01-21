@@ -25,7 +25,7 @@
 void PrintUdid(EeePUDId_t *udid)
 {
 	printf("Vendor: %02X%02X, Device: %02X%02X, Flavor: %02X, Rev: %02X",
-		udid->VendId[0], udid->VendId[1], udid->DeviceId[0], 
+		udid->VendId[1], udid->VendId[0], udid->DeviceId[0], 
 		udid->DeviceId[1], udid->DeviceFlav, udid->RevId);
 }
 
@@ -249,16 +249,23 @@ void ParseComHpcModule(COMHR10_M_t *mp)
 	const char *arch64_str[] = 
 		{ "X64", "Aarch64", "64-bit RISC-V", "Reserved", "64-bit Other", "64-bit GPU", "64-bit FPGA" };
     const char *mgmt_str[] =
-        { "eSPI", "Boot SPI", "IPMB", "SM Bus", "BIOS Select", "PCIe BMC" };
+        { "eSPI", "Boot-SPI", "IPMB", "SM-Bus", "BIOS-Select", "PCIe-BMC" };
         
     printf("COM-HPC Module EEPROM\n");
     printf("   "); PrintUdid(&mp->DevId); printf("\n");
-    printf("   COM-HPC Module Type: %s, Pins: %d, MaxSize: %c\n", 
+    printf("   COM-HPC Module Type: %s, TYPE Pins: %d, MaxSize: %c\n", 
         (mp->MType >> 6) & 2 ? "M.F" : (mp->MType >> 6) & 1 ? "M.B" : "M.U",
         mp->MType & 7,
         'A' + ((mp->MType >> 3) & 7));
     printf("   Spec Revision: %d.%d\n", mp->SpecRev >> 4 & 0xF, mp->SpecRev & 0xF);
-    printf("   Architecture: %s\n", mp->Architecture & 0x80 ? arch_str[mp->Architecture & 0x7F] : arch64_str[mp->Architecture & 0x7F]);
+    printf("   Architecture: ");
+    const char **archs = mp->Architecture & 0x80 ? arch64_str : arch_str;
+    for(int i = 0; i < 7; i++) {
+ 		if(mp->Architecture & (1 << i)) {
+			printf("%s ", archs[i]);
+		}
+	}
+    printf("\n");
     printf("   CPU Count: %d, Cores/CPU: %d, Threads/Core: %d\n", 
         mp->NumCpus & 0xF, mp->NumCores, (mp->NumCpus >> 4) & 0xF);
     printf("   Max Memory Size: %d Gb, Memory Slots: %d\n", 
