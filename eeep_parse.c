@@ -268,7 +268,8 @@ void ParseComHpcModule(COMHR10_M_t *mp)
     printf("\n");
     printf("   CPU Count: %d, Cores/CPU: %d, Threads/Core: %d\n", 
         mp->NumCpus & 0xF, mp->NumCores, (mp->NumCpus >> 4) & 0xF);
-    printf("   Max Memory Size: %d Gb, Memory Slots: %d\n", 
+    printf("   Max Memory Size%s: %d Gb, Memory Slots: %d\n", 
+        (mp->MaxMem >> 4) & 0xF ? " (per slot)" : "",
         1 << (mp->MaxMem & 0xF), (mp->MaxMem >> 4) & 0xF);
     printf("   USB Port Counts: USB 2: %d, USB 3.2 Gen1/2: %d, USB 3.2 Gen 2x2: %d, USB 4: %d\n", 
         mp->UsbDesc1 & 0xF, (mp->UsbDesc1 >> 4) & 3, mp->UsbDesc2 & 7, (mp->UsbDesc2 >> 4) & 7);
