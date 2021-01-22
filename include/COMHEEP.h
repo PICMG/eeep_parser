@@ -133,7 +133,8 @@ typedef struct COMHR10_M_s {
                                 Bit 4-7: Number of threads per Core */
      uint8_t     NumCores;   /* 0x13 Number of cores per CPU
                                 Bit 0-7: Number of Cores per CPU */
-     uint8_t     MaxMem;     /* 0x14 Maximum amount of memory supported and number of memory slots
+     uint8_t     MaxMem;     /* 0x14 Maximum amount of memory supported per slot and number of 
+                                     memory slots
                                 Bit 0-3: Maximum amount of memory supported as 2 ^ (value) GB
                                 Bit 4-7: Number of memory slots */
      uint8_t     Architecture;/* 0x15 Architecture of the processing elements on the module
