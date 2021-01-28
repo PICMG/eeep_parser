@@ -24,9 +24,15 @@
 
 void PrintUdid(EeePUDId_t *udid)
 {
-	printf("Vendor: %02X%02X, Device: %02X%02X, Flavor: %02X, Rev: %02X",
-		udid->VendId[1], udid->VendId[0], udid->DeviceId[0], 
-		udid->DeviceId[1], udid->DeviceFlav, udid->RevId);
+    char vendor_chars[3];
+    vendor_chars[0] = (udid->VendId[0] >> 2 & 0x1F) + 'A' - 1;
+    vendor_chars[1] = (((udid->VendId[0] & 0x3) << 3) | (udid->VendId[1] >> 5 & 0x7))  + 'A' - 1;
+    vendor_chars[2] = (udid->VendId[1] & 0x1F) + 'A' - 1;
+    
+	printf("Vendor: %02X%02X (\'%c%c%c\'), Device: %02X%02X, Flavor: %02X, Rev: %02X",
+		udid->VendId[1], udid->VendId[0], 
+        vendor_chars[0], vendor_chars[1], vendor_chars[2],
+        udid->DeviceId[0], udid->DeviceId[1], udid->DeviceFlav, udid->RevId);
 }
 
 void ParseCarrier(COM0R20_CB_t *cbp)
