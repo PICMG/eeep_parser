@@ -714,7 +714,7 @@ void ParseExtDeviceDesc(EeePExtI2CDeviceDesc_t *dblock)
 {
 	printf("   Extension EEPROM Device:\n");
 	printf("      Bus: %s, Device Address: %x\n", buses_str[dblock->DeviceBus], 
-		(unsigned)dblock->DeviceAddr[0] | (unsigned)dblock->DeviceAddr[1] << 8);
+		(unsigned)dblock->DeviceAddr[0] << 8 | (unsigned)dblock->DeviceAddr[1]);
 	printf("      Size: %d bytes, Index: %s\n", 256 << (dblock->DeviceDesc & 0xF), 
 		dblock->DeviceDesc & 0x10 ? "Extended" : "Standard");
 }
@@ -727,7 +727,7 @@ BOOL ParseDynamic(unsigned char *buf, unsigned int size, unsigned int *offset)
         fprintf(stderr, "Inconsistency in the list of dynamic blocks at %d\n", *offset);
         return FALSE;
     }
-    next_size = ((unsigned int)(dblock->DBlockLength[0]) | (dblock->DBlockLength[1] << 8)) << 1;
+    next_size = ((unsigned int)(dblock->DBlockLength[0]) << 8 | (unsigned int)(dblock->DBlockLength[1])) << 1;
     printf("Dynamic block at offset %d, type %d (%s), length %d bytes\n", *offset, dblock->DBlockId, 
         FindDynamicBlockText(dblock->DBlockId), next_size);
     if (next_size == 0) {
