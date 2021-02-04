@@ -232,7 +232,7 @@ size_t ParseDynamic(void *buf, unsigned int offset, size_t size, uint8_t *block_
         fprintf(stderr, "Inconsistency in the list of dynamic blocks at %d\n", offset);
         return -1;
     }
-    next_size = ((unsigned int)(dblock->DBlockLength[0]) | (dblock->DBlockLength[1] << 8)) << 1;
+    next_size = (((unsigned int)(dblock->DBlockLength[0]) << 8) | (unsigned int)(dblock->DBlockLength[1])) << 1;
     if (next_size == 0) {
         if (dblock->DBlockId == EEEP_BLOCK_ID_UNUSED) {
             //  End of data
