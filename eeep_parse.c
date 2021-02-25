@@ -146,7 +146,7 @@ void ParseComHpcCarrier(COMHR10_CB_t *cbp)
 	const char *misc_io1_str[] = 
 		{ "Wake0", "Wake1", "Suspend", "BatteryLow", "ThermalProtect", "Fan", "Watchdog" };
  	const char *misc_io2_str[] = 
-		{ "RapidHutdown", "TamperDetect", "LidSwitch", "Sleep" };
+		{ "RapidShutdown", "TamperDetect", "LidSwitch", "Sleep" };
 	const char *ddi_port_str[] =
 		{ "None", "Display Port", "HDMI/DVI" };
 	const char *csi_port_str[] =
