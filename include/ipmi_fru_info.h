@@ -133,9 +133,9 @@ typedef struct {
 
 //  PICMG record IDs for carrier header/module header/dynamic record
 
-#define PICMG_RECORD_ID_EEEP_CARRIER_HEADER             0x70
-#define PICMG_RECORD_ID_EEEP_MODULE_HEADER              0x71
-#define PICMG_RECORD_ID_EEEP_DYNAMIC_BLOCK              0x72
+#define PICMG_RECORD_ID_EEEP_CARRIER_HEADER             0x35
+#define PICMG_RECORD_ID_EEEP_MODULE_HEADER              0x36
+#define PICMG_RECORD_ID_EEEP_DYNAMIC_BLOCK              0x37
 
 //  Common header for a record in multi-record area
 
